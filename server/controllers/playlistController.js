@@ -29,7 +29,7 @@ const matchCountryPlaylist = function(request){
         case 'ecuador':
             Playlist = PlaylistModels.PlaylistEC
             break;
-        case 'repdominicana':
+        case 'dominican_republic':
             Playlist = PlaylistModels.PlaylistRD
             break;
         case 'peru':
