@@ -161,3 +161,19 @@ exports.getSongV2 = catchAsync (async function(request,response,next){
         }
     });
 });
+
+exports.docs = catchAsync(async function(request,response){
+    response.status(200).json({
+        status:'success',
+        message:'This is the root for the songs endpoint. You can use this endpoint as follows:',
+        endpoints:{
+            'songs/v2/:id_song':{
+                description: 'Gives you the records (playlist by date) per country for this songs.',
+                extra_paramentes: {
+                    limit: 'limit the number of records returned per country. Default is 7',
+                    date: 'return the records for the specific date. Can be used with advance filtering. For example /songs/id_song?date[lt]=2022-12-30 will give you only records before the date 2022-12-30.'
+                }
+            }
+        }
+    })
+});

@@ -10,5 +10,7 @@ router.route('/:artist')
 router.route('/country/:country')
     .get(artistsController.getArtists);
 
+router.route('/')
+    .get(artistsController.docs);
 
 module.exports = router;

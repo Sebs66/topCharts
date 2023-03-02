@@ -232,3 +232,24 @@ exports.getArtistV2 = catchAsync(async function(request,response,next){ /// Este
     })
 
 });
+
+exports.docs = catchAsync(async function(request,response,next){
+    response.status(200).json({
+        status: 'success',
+        message: `This is the root of the artist endpoint.
+        You can use this endpoint as follows:`,
+        endpoints:{
+            'artist/:id_artist': {
+                description:'Gives you the appearance of the artist in each of the different countries playlist. Restricted to 7 records (playlist by date) per country if not specificied otherwise.',
+                extra_parameters:{
+                    limit: 'limit the number of records (playlist by date) per country data. 7 by default. For example: artists/:id_artist?limit=10 will give you at most 10 records per country for that particular artist',
+                    date: 'Filter the records by date. Can be used with advance filtering (gte,ge,lte,lt). For example: artists/:id_artist??date[lte]=2023-01-03&date[gte]=2022-12-25 will give you all the records for that artist between both those dates (included)',
+                }
+            },
+            'artist/country/:country': {
+                description: "Gives you the appearance of the artist in an specific country's playlist. Restricted to 7 records if not specified otherwise.",
+                extra_parameters: 'Not yet implemented'
+            }
+        },
+    });
+});

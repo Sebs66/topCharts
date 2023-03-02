@@ -224,3 +224,27 @@ exports.getPlaylistsSong = catchAsync (async function(request,response,next){
         next(new AppError('Please select a spotify song ID'));
     }
 });
+
+exports.docs = catchAsync(async function(request,response){
+    response.status(200).json({
+        status:'success',
+        message: 'This is the root of the playlists endpoint. You can use this endpoint as follows:',
+        endpoints:{
+            'playlists/:country':{
+                description:'Gives you records (playlist by date) for the specific country',
+                extra_parameters: {
+                    limit: 'limit the records. Default is 7',
+                    date: 'Filter the records by date. Can be used with advance filtering (gte,gt,lte,lt). For example: playlists/country?date[lte]=2022-12-27 will return records prior or equal to the specific date'
+                }
+            },
+            'playlist/:country/stats':{
+                description:'Gives general information about the collection of records for this country. number of total records, avgPlays per playlist, minPlays and maxPlays.'
+            },
+            'playlist/:country/playlist_id':{
+                description: 'Gives the details of this record (playlist), with all the information contained on it.'
+            }
+
+        }
+
+    });
+});

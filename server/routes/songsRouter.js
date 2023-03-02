@@ -9,5 +9,6 @@ router.route('/v2/:song')
     .get(songsController.getSongV2);
 router.route('/:song')
     .get(songsController.getSong);
-
+router.route('/')
+    .get(songsController.docs);
 module.exports = router;

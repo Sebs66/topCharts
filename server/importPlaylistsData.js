@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const fs = require('fs');
 const PlaylistModel = require('./models/playlistModel');
 
-dotenv.config({path:'./server/.config.env'});
+dotenv.config({path:'./.config.env'});
 
 const DB = process.env.DATABASE.replace('<PASSWORD>',process.env.DATABASE_PASSWORD); /// url de conneccion.
 
@@ -26,12 +26,12 @@ mongoose.connect(DB,{
         .catch(err=>{console.log(err.message)})
 
 /// READ TXT FILES.
-const files = fs.readdirSync('./data') /// List with all files.
+const files = fs.readdirSync('../data') /// List with all files.
 const filesFiltered = files.reduce((acc,file_string)=>{
     if (file_string.includes('temp') || file_string.includes('Artists')){
         return acc
     }
-    const obj = JSON.parse(fs.readFileSync(`./data/${file_string}`,'utf-8'))
+    const obj = JSON.parse(fs.readFileSync(`../data/${file_string}`,'utf-8'))
     const country = obj.country
     //console.log('country',country.toLowerCase())
     acc[country.toLowerCase()].push(obj) 

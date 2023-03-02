@@ -19,4 +19,7 @@ router.route('/:country/:id')
     .get(utils.checkCountry,playlistController.getPlaylist)
     .delete(playlistController.deletePlaylist);
 
+router.route('/')
+    .get(playlistController.docs);
+    
 module.exports = router;
